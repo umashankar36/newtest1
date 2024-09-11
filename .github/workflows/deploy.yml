@@ -24,7 +24,9 @@ jobs:
         $subscriptionId="${{ secrets.SUBSCRIPTIONID }}"
         $ResourceGroup="${{ vars.ResourceGroup }}"
         $location="${{ vars.Location }}"
-        
+        $Enviorment="worpress-containerapps"
+
+       
         # Login to Azure
         az login --service-principal -u ${{ secrets.APPLICATIONID }} -p ${{ secrets.SECRET }} --tenant ${{ secrets.TENANTID }}
         
@@ -33,4 +35,12 @@ jobs:
         
         # Create a new resource group for the gallery if it doesn't exist
         az group create --name $ResourceGroup --location $location --force
+        
+        # Prepare env
+        az extension add --name containerapp --upgrade --allow-preview true
+        az provider register --namespace Microsoft.App
+        az provider register --namespace Microsoft.OperationalInsights
+
+        # Create Container App Enviorment
+        az containerapp env create --name $ENVIRONMENT --resource-group $RESOURCE_GROUP --location "$LOCATION"
         
