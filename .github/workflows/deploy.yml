@@ -1,0 +1,36 @@
+name: Deploy WordPress in Container Apps
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: 'Navigate to Workspace'
+      run: cd $GITHUB_WORKSPACE
+
+    - name: 'dir just for debug'
+      run: |
+        dir
+
+    - name: 'Export Image'
+      shell: pwsh
+      run: |
+        # env for source image
+        $subscriptionId="${{ secrets.SUBSCRIPTIONID }}"
+        $ResourceGroup="${{ vars.ResourceGroup }}"
+        $location="${{ vars.Location }}"
+        
+        # Login to Azure
+        az login --service-principal -u ${{ secrets.APPLICATIONID }} -p ${{ secrets.SECRET }} --tenant ${{ secrets.TENANTID }}
+        
+        # Set the subscription context
+        az account set --subscription $subscriptionId
+        
+        # Create a new resource group for the gallery if it doesn't exist
+        az group create --name $ResourceGroup --location $location --force
+        
