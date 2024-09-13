@@ -17,7 +17,7 @@ jobs:
       run: |
         dir
 
-    - name: 'Export Image'
+    - name: 'Build COntainer Apps'
       shell: pwsh
       run: |
         # env for source image
