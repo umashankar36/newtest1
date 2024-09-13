@@ -38,6 +38,7 @@ jobs:
         
         # Prepare env
         az extension add --name containerapp --upgrade --allow-preview true
+        az extension add --name containerapp-compose --upgrade --yes --allow-preview true
         az provider register --namespace Microsoft.App
         az provider register --namespace Microsoft.OperationalInsights
 
