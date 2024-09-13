@@ -20,7 +20,7 @@ jobs:
     - name: 'Build COntainer Apps'
       shell: pwsh
       run: |
-        # env for source image
+        # env
         $subscriptionId="${{ secrets.SUBSCRIPTIONID }}"
         $ResourceGroup="${{ vars.ResourceGroup }}"
         $location="${{ vars.Location }}"
