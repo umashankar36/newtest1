@@ -43,7 +43,7 @@ jobs:
         az provider register --namespace Microsoft.OperationalInsights
 
         # Create Container App Enviorment
-        az containerapp env create --name $ENVIRONMENT --resource-group $RESOURCE_GROUP --location $LOCATION
+        az containerapp env create --name $Enviorment --resource-group $ResourceGroup --location $location
 
         # Create a container app by explicitly passing in a Compose configuration file.
-        az containerapp compose create -g $RESOURCE_GROUP --environment $ENVIRONMENT --compose-file-path "docker-compose-azure.yml"
+        az containerapp compose create -g $ResourceGroup --environment $Enviorment --compose-file-path "docker-compose-azure.yml"
