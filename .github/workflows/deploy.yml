@@ -34,7 +34,7 @@ jobs:
         az account set --subscription $subscriptionId
         
         # Create a new resource group for the gallery if it doesn't exist
-        az group create --name $ResourceGroup --location $location --force
+        az group create --name $ResourceGroup --location $location
         
         # Prepare env
         az extension add --name containerapp --upgrade --allow-preview true
